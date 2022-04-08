@@ -1,24 +1,78 @@
-let drawButton = document.querySelector(".button1");
-let rematchButton = document.querySelector(".button2");
-// let suits = ['H','C','S','D'];
-// let value = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-// let deck = [];
-let cards = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-let roundsLeft = document.querySelector('.rounds_left');
-let playerOneCard = document.querySelector(".card1");
-let playerTwoCard = document.querySelector(".card2");
-let rounds = 26;
-let playerOnePoints = 26;
-let playerTwoPoints = 26;
-let scoreOne = document.querySelector(".score1");
-let scoreTwo = document.querySelector(".score2");
-let roundsMessage = document.querySelector(".rounds");
-let winningDiv = document.querySelector('.winner');
-let activeGame = true;
-
+let drawButton = document.querySelector(".button1")
+let rematchButton = document.querySelector(".button2")
+let roundsLeft = document.querySelector(".rounds_left")
+let playerOneCard = document.querySelector(".card1")
+let playerTwoCard = document.querySelector(".card2")
+let playerDiscardPile = document.querySelector(".discard-pile")
+let player2DiscardPile = document.querySelector(".discard.pile2")
+let playerOnePoints = 26
+let playerTwoPoints = 26
+let playerOnePile = 26
+let playerTwoPile = 26
+let scoreOne = document.querySelector(".score1")
+let scoreTwo = document.querySelector(".score2")
+let roundsMessage = document.querySelector(".rounds")
+let winnerOneMessage = document.querySelector(".winner1")
+let winnerTwoMessage = document.querySelector(".winner2")
+let drawMessage = document.querySelector(".draw")
+let cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+let deck = []
+let playerOneDeck = []
+let playerTwoDeck = []
+let suit = ["♠", "♣", "♥", "♦"]
+let rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
+let score = {
+    A: 14,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 8,
+    9: 9,
+    10: 10,
+    Jack: 11,
+    Queen: 12,
+    King: 13,
+}
 
 function reset(){
     location.reload()
+}
+
+ 
+function makeDeck(){
+for (let i = 0; i<suit.length; i++) {
+    for(let j=0; j<rank.length; j++){
+        let card = {
+            suit: suit[i],
+            rank: rank[j],
+            score: score[rank[j]]
+        };
+        deck.push(card);
+        }
+    }
+    console.log(deck)
+    return deck;
+}
+makeDeck()
+
+function shuffleDeck(){
+    for(let i = 0; i < 26; i++) {
+        let randomNumber = Math.floor(Math.random() * deck.length)
+        playerOneDeck.push(deck[randomNumber])
+        let randomNumber2 = Math.floor(Math.random() * deck.length)
+        playerTwoDeck.push(deck[randomNumber2])
+    }
+    console.log(shuffleDeck)
+    return shuffleDeck
+}
+
+function splitDeck(){
+    let halfDeck = Math.ceil(deck.length / 2);
+    playerOneDeck = deck.slice(0, halfDeck)
+    playerTwoDeck = deck.slice(0, halfDeck)
 }
 
 function randomNum(){
@@ -26,68 +80,92 @@ function randomNum(){
     playerOneCard.innerHTML = random
     let random2 = Math.floor(Math.random() * cards.length)
     playerTwoCard.innerHTML = random2
-    
+}
+// function decreaseRound(){
+//     if (rounds >= 1){
+//         rounds -= 1
+//         roundsLeft.innerHTML = rounds
+//     }else{
+//         drawButton.style.display="none"
+//         roundsLeft.innerHTML = "Game Over!"
+//         roundsMessage.style.display="none"
+//     }
+// }
+
+function playersPiles(){
+    if(pla)
 }
 
-function shuffleDeck() {
-    for (let i =0; i < deck.length; i++) {
-        let j = Math.floor(Math.random() * deck.length);
-        let temp = deck[i];
-        deck[i] = deck[j];
-        deck[j] = temp;
-    }
+function winner(){
+    if(playerOnePoints && playerTwoPoints) {
+        console.log("no winner yet")
+    } else {
+        if(playerOnePoints === 0) console.log('player two wins')
+        else console.log("player one wins!")
+    } 
 }
 
-function decreaseRound(){
-    if(rounds >= 1){
-    rounds -= 1
-    roundsLeft.innerHTML = rounds 
-}else{ 
-drawButton.style.display = "none"
-roundsLeft.innerHTML = "Game over!"
-roundsMessage.style.display = "none"
-}
-}
-
+// The winner message functions I am pretty sure are working?
 function increasePlayerOneScore(){
     playerOnePoints += 1
-    scoreOne.innerHTML = playerOnePoints 
-    // console.log(playerOnePoints)
+    scoreOne.innerHTML = playerOnePoints
+    winnerOneMessage.style.display="block"
+    winnerTwoMessage.style.display="none"
+
 }
 function decreasePlayerOneScore(){
-    playerOnePoints -= 1   
-    scoreOne.innerHTML = playerOnePoints 
+    playerOnePoints -= 1
+    scoreOne.innerHTML = playerOnePoints
 }
 function increasePlayerTwoScore(){
     playerTwoPoints += 1
-    scoreTwo.innerHTML = playerTwoPoints 
+    scoreTwo.innerHTML = playerTwoPoints
+    winnerTwoMessage.style.display="block"
+    winnerOneMessage.style.display="none"
 }
 function decreasePlayerTwoScore(){
     playerTwoPoints -= 1
-    scoreTwo.innerHTML = playerTwoPoints  
+    scoreTwo.innerHTML = playerTwoPoints
 }
 
-//mostly working, but bug makes it occasionally not work
+
+// this is mostly working; but there is a bug 
+
 function play(){
-    if(playerOneCard.innerHTML > playerTwoCard.innerHTML){
-        increasePlayerOneScore()
-        decreasePlayerTwoScore()
-    }
-    else if (playerOneCard.innerHTML < playerTwoCard.innerHTML){
+    if (playerOneCard.innerHTML > playerTwoCard.innerHTML){
+      console.log('player one had the higher cards')
+      increasePlayerOneScore()
+      decreasePlayerTwoScore()
+    } else if (playerOneCard.innerHTML < playerTwoCard.innerHTML){
+        console.log("player two had the higher card")
         increasePlayerTwoScore()
         decreasePlayerOneScore()
-    }else 
-    console.log("draw") 
-    }
+    }else if (playerOneCard.innerHTML == playerTwoCard.innerHTML)
+    console.log("its a draw")
 
-drawButton.addEventListener('click', () => {
+}
+
+drawButton.addEventListener("click", () => {
     randomNum()
-    decreaseRound()
+    // decreaseRound()
     play()
 })
 
 
-rematchButton.addEventListener('click', () => {
+rematchButton.addEventListener("click", () => {
     reset()
-    console.log("this works too")
+    console.log("this button also works")
 })
+
+
+
+// This function is not working; but the idea is that when the game is over a special 
+// message will display saying who is the winner
+function gameOver(){
+    if (roundsLeft.innerHTML >= 1 && scoreOne.innerHTML > scoreTwo.innerHTML){
+        winnerOneMessage.style.display = ""
+    }
+    else if (roundsLeft.innerHTML >= 1 && scoreOne.innerHTML < scoreTwo.innerHTML){
+        winnerTwoMessage.style.display = ""
+    }
+} 
