@@ -1,27 +1,35 @@
 let drawButton = document.querySelector(".button1")
 let rematchButton = document.querySelector(".button2")
-let roundsLeft = document.querySelector(".rounds_left")
+let p1discard = document.querySelector(".pile-one")
+let p2discard = document.querySelector(".pile-two")
 let playerOneCard = document.querySelector(".card1")
 let playerTwoCard = document.querySelector(".card2")
-let playerDiscardPile = document.querySelector(".discard-pile")
+let player1DiscardPile = document.querySelector(".discard-pile")
 let player2DiscardPile = document.querySelector(".discard.pile2")
 let playerOnePoints = 26
 let playerTwoPoints = 26
-let playerOnePile = 26
-let playerTwoPile = 26
+// let playerOnePile = 0
+// let playerTwoPile = 0
 let scoreOne = document.querySelector(".score1")
 let scoreTwo = document.querySelector(".score2")
-let roundsMessage = document.querySelector(".rounds")
+// let roundsMessage = document.querySelector(".rounds")
 let winnerOneMessage = document.querySelector(".winner1")
 let winnerTwoMessage = document.querySelector(".winner2")
-let drawMessage = document.querySelector(".draw")
-let cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+// let drawMessage = document.querySelector(".draw")
 let deck = []
 let playerOneDeck = []
 let playerTwoDeck = []
-let suit = ["♠", "♣", "♥", "♦"]
-let rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
-let score = {
+
+//function to reset the game once the game is over
+function reset(){
+    location.reload()
+}
+
+ //trying to create a deck of cards, showing up in console but not underneath P1 Card or P2 card which is what I want it to do.
+function makeDeck(){
+    let suit = ["♠", "♣", "♥", "♦"]
+    let rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
+    let score = {
     A: 14,
     2: 2,
     3: 3,
@@ -36,13 +44,6 @@ let score = {
     Queen: 12,
     King: 13,
 }
-
-function reset(){
-    location.reload()
-}
-
- 
-function makeDeck(){
 for (let i = 0; i<suit.length; i++) {
     for(let j=0; j<rank.length; j++){
         let card = {
@@ -59,7 +60,7 @@ for (let i = 0; i<suit.length; i++) {
 makeDeck()
 
 function shuffleDeck(){
-    for(let i = 0; i < 26; i++) {
+    for(let i = 0; i <= 26; i++) {
         let randomNumber = Math.floor(Math.random() * deck.length)
         playerOneDeck.push(deck[randomNumber])
         let randomNumber2 = Math.floor(Math.random() * deck.length)
@@ -76,9 +77,9 @@ function splitDeck(){
 }
 
 function randomNum(){
-    let random = Math.floor(Math.random() * cards.length)
+    let random = Math.floor(Math.random() * deck.length)
     playerOneCard.innerHTML = random
-    let random2 = Math.floor(Math.random() * cards.length)
+    let random2 = Math.floor(Math.random() * deck.length)
     playerTwoCard.innerHTML = random2
 }
 // function decreaseRound(){
@@ -92,9 +93,6 @@ function randomNum(){
 //     }
 // }
 
-function playersPiles(){
-    if(pla)
-}
 
 function winner(){
     if(playerOnePoints && playerTwoPoints) {
@@ -147,8 +145,8 @@ function play(){
 
 drawButton.addEventListener("click", () => {
     randomNum()
-    // decreaseRound()
     play()
+    // makeDeck()
 })
 
 
@@ -156,7 +154,6 @@ rematchButton.addEventListener("click", () => {
     reset()
     console.log("this button also works")
 })
-
 
 
 // This function is not working; but the idea is that when the game is over a special 
