@@ -52,3 +52,15 @@ const deckOfCards
 const cards
 const playerOneScore
 const playerTwoScore
+
+
+-Create header in HTML
+-Create P1 and P2 cards and give each one a class in HTML
+-Create P1 Card Count and P2 Card Count and assign them 26 in HTML
+-Create a draw button and a rematch button within the same div
+-Create a discard pile for player one and two. 
+-create a h3 for declaring whether player one or two wins
+
+
+
+C
