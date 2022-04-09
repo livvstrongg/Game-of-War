@@ -1,34 +1,26 @@
+//in order of HTML
+let playerOneCard = document.querySelector(".p1card")
+let playerTwoCard = document.querySelector(".p2card")
+let playerOneCardCount = document.querySelector(".p1card-count")
+let playerTwoCardCount = document.querySelector(".p2card-count")
 let drawButton = document.querySelector(".button1")
 let rematchButton = document.querySelector(".button2")
-let p1discard = document.querySelector(".pile-one")
-let p2discard = document.querySelector(".pile-two")
-let playerOneCard = document.querySelector(".card1")
-let playerTwoCard = document.querySelector(".card2")
-let firstPlayer = 0
-let secondPlayer = 0
-let player1DiscardPile = document.querySelector(".discard-pile")
-let player2DiscardPile = document.querySelector(".discard.pile2")
-let playerOnePoints = 26
-let playerTwoPoints = 26
-let scoreOne = document.querySelector(".score1")
-let scoreTwo = document.querySelector(".score2")
+let player1DiscardPile = document.querySelector(".p1-discard")
+let player2DiscardPile = document.querySelector(".p2-discard")
 let winnerOneMessage = document.querySelector(".winner1")
 let winnerTwoMessage = document.querySelector(".winner2")
+let player1 = []
+let player2 = []
+let player1Count = 26
+let player2Count = 26
 let deck = []
 let playerOneDeck = []
 let playerTwoDeck = []
 
-function drawCards() {
-    playerOneDeck[0] = playerOneDeck.shift([0])
-    playerOneDeck.innerHTML = playerOneDeck[0].Value
-    playerTwoDeck[0] = playerTwoDeck.shift([0])
-    playerTwoDeck.innerHTML = playerTwoDeck[0].Value      
-}
-
 function makeDeck(){
     let suit = ["♠", "♣", "♥", "♦"]
     let rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
-    let score = {
+    let value = {
     A: 14,
     2: 2,
     3: 3,
@@ -43,12 +35,12 @@ function makeDeck(){
     Q: 12,
     K: 13,
 }
-for (let i = 0; i<suit.length; i++) {
-    for(let j=0; j<rank.length; j++){
+for (let i = 0; i < suit.length; i++) {
+    for(let j = 0; j < rank.length; j++){
         let card = {
             suit: suit[i],
             rank: rank[j],
-            score: score[rank[j]]
+            value: value[rank[j]]
         };
         deck.push(card);
         }
@@ -67,6 +59,13 @@ function shuffleDeck(){
     return shuffleDeck
 }
 
+function drawCards() {
+    playerOneDeck[0] = playerOneDeck.shift([0])
+    playerOneDeck.innerHTML = playerOneDeck[0].value
+    playerTwoDeck[0] = playerTwoDeck.shift([0])
+    playerTwoDeck.innerHTML = playerTwoDeck[0].value      
+}
+
 function randomNum(){
     let random = Math.floor(Math.random() * deck.length)
     playerOneCard.innerHTML = random
@@ -75,9 +74,9 @@ function randomNum(){
 }
 
 function increasePlayer1DiscardPile(){
-    if (playerOnePoints >= 1){
-        playerOnePoints -=0
-        p1discard.innerHTML = playerOnePoints
+    if (player1Count >= 1){
+        player1Count -= 1
+        p1discard.innerHTML = player1Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
@@ -86,9 +85,9 @@ function increasePlayer1DiscardPile(){
 }
 
 function increasePlayer2DiscardPile(){
-    if (playerTwoPoints >= 1){
-        playerTwoPoints -=0
-        p2discard.innerHTML = playerTwoPoints
+    if (player2Count >= 1){
+        player2Count -= 1
+        p2Discard.innerHTML = player2Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
@@ -97,45 +96,45 @@ function increasePlayer2DiscardPile(){
 }
 
 function winner(){
-    if(playerOnePoints && playerTwoPoints) {
+    if(player1Count && player2Count) {
         console.log("no winner yet")
     } else {
-        if(playerOnePoints === 0) console.log('player two wins')
+        if(player1Count === 0) console.log('player two wins')
         else console.log("player one wins!")
     } 
 }
 
-function increasePlayerOneScore(){
-    playerOnePoints += 2
-    scoreOne.innerHTML = playerOnePoints
+function increasePlayerOnevalue(){
+    player1Count += 2
+    playerOneCardCount.innerHTML = player1Count
     winnerOneMessage.style.display="block"
     winnerTwoMessage.style.display="none"
 
 }
-function decreasePlayerOneScore(){
-    playerOnePoints -= 1
-    scoreOne.innerHTML = playerOnePoints
+function decreasePlayerOnevalue(){
+    player1Count -= 1
+    playerOneCardCount.innerHTML = player1Count
 }
-function increasePlayerTwoScore(){
-    playerTwoPoints += 2
-    scoreTwo.innerHTML = playerTwoPoints
+function increasePlayerTwovalue(){
+    player2Count += 2
+    playerTwoCardCount.innerHTML = player2Count
     winnerTwoMessage.style.display="block"
     winnerOneMessage.style.display="none"
 }
-function decreasePlayerTwoScore(){
-    playerTwoPoints -= 1
-    scoreTwo.innerHTML = playerTwoPoints
+function decreasePlayerTwovalue(){
+    player2Count -= 1
+    playerTwoCardCount.innerHTML = player2Count
 }
 
 function play(){
     if (playerOneCard.innerHTML > playerTwoCard.innerHTML){
       console.log('player one had the higher cards')
-      increasePlayerOneScore()
-      decreasePlayerTwoScore()
+      increasePlayerOnevalue()
+      decreasePlayerTwovalue()
     } else if (playerOneCard.innerHTML < playerTwoCard.innerHTML){
         console.log("player two had the higher card")
-        increasePlayerTwoScore()
-        decreasePlayerOneScore()
+        increasePlayerTwovalue()
+        decreasePlayerOnevalue()
     }else if (playerOneCard.innerHTML == playerTwoCard.innerHTML)
     console.log("its a draw")
 
@@ -154,16 +153,17 @@ function reset(){
     location.reload()
 }
 
+//THIS WORKS
 rematchButton.addEventListener("click", () => {
     reset()
     console.log("this button also works")
 })
 
-function gameOver(){
-    if (roundsLeft.innerHTML >= 1 && scoreOne.innerHTML > scoreTwo.innerHTML){
-        winnerOneMessage.style.display = ""
-    }
-    else if (roundsLeft.innerHTML >= 1 && scoreOne.innerHTML < scoreTwo.innerHTML){
-        winnerTwoMessage.style.display = ""
-    }
-} 
+// function gameOver(){
+//     if (player1Count && player2Count === 0){
+//         winnerOneMessage.style.display = ""
+//     }
+//     // else if (roundsLeft.innerHTML >= 1 && playerOneCardCount.innerHTML < playerTwoCardCount.innerHTML){
+//     //     winnerTwoMessage.style.display = ""
+//     // }
+// } 
