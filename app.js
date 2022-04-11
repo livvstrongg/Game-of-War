@@ -13,6 +13,8 @@ let player1 = []
 let player2 = []
 let player1Count = 26
 let player2Count = 26
+let player1Discard = 0
+let player2Discard = 0
 let deck = []
 let playerOneDeck = []
 let playerTwoDeck = []
@@ -100,37 +102,30 @@ function winner() {
     }
 }
 
-function increasePlayerOnevalue(){
-    if(player)
-    player1Count += 2
-    playerOneCardCount.innerHTML = player1Count
+function increasePlayerOneDiscardPile(){
+    player1Discard += 2
+    player1DiscardPile.innerHTML = player1Discard
     winnerOneMessage.style.display="block"
     winnerTwoMessage.style.display="none"
 }
-function decreasePlayerOnevalue(){
-    player1Count -= 1
-    playerOneCardCount.innerHTML = player1Count
-}
-function increasePlayerTwovalue(){
-    player2Count += 2
-    playerTwoCardCount.innerHTML = player2Count
+
+function increasePlayerTwoDiscardPile(){
+    player2Discard += 2
+    player2DiscardPile.innerHTML = player2Discard
     winnerTwoMessage.style.display="block"
     winnerOneMessage.style.display="none"
 }
-function decreasePlayerTwovalue(){
-    player2Count -= 1
-    playerTwoCardCount.innerHTML = player2Count
-}
+
+
+
 
 function play(){
     if (playerOneCard.innerHTML > playerTwoCard.innerHTML){
       console.log('player one had the higher cards')
-      increasePlayerOnevalue()
-      decreasePlayerTwovalue()
+      increasePlayerOneDiscardPile()
     } else if (playerOneCard.innerHTML < playerTwoCard.innerHTML){
         console.log("player two had the higher card")
-        increasePlayerTwovalue()
-        decreasePlayerOnevalue()
+        increasePlayerTwoDiscardPile()
     }else if (playerOneCard.innerHTML == playerTwoCard.innerHTML)
     console.log("its a draw")
 
@@ -152,12 +147,9 @@ drawButton.addEventListener("click", () => {
     randomNum()
     decreaseRound()
     shuffle(deck)
-    // renderDeck(deck)
     play()
     increasePlayer1DiscardPile()
     increasePlayer2DiscardPile()
-    decreasePlayerOnevalue()
-    decreasePlayerTwovalue()
 })
 
 function reset(){
