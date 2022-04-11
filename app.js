@@ -20,10 +20,12 @@ let suits = ["♠", "♣", "♥", "♦"]
 let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 let winner1 = document.querySelector(".winner1")
 let winner2 = document.querySelector(".winner2")
+let roundsLeft = document.querySelector(".rounds_left")
+let rounds = 26
 winner1 = 'none'
 winner2 = 'none'
 
-function getDeck()
+function createDeck()
 {
     let deck = new Array();
     for(let i = 0; i < suits.length; i++)
@@ -38,12 +40,12 @@ return deck;
   
 }
 
-deck = getDeck()
-
+deck = createDeck()
+//deck of cards created
 
 function shuffle(deck)
 {
-	for (let i = 0; i < 1000; i++)
+	for (let i = 0; i < 52; i++)
 	{
 		let location1 = Math.floor((Math.random() * deck.length));
 		let location2 = Math.floor((Math.random() * deck.length));
@@ -53,27 +55,6 @@ function shuffle(deck)
 		deck[location2] = tmp;
 	}
 }
-
-// function renderDeck()
-// {
-//       document.getElementById("deck").innerHTML = "none";
-
-// 	for(let i = 0; i < deck.length; i++)
-// 	{
-// 		let card = document.createElement("div");
-// 		let value = document.createElement("div");
-// 		let suit = document.createElement("div");
-// 		card.className = "card";
-// 		value.className = "value";
-// 		suit.className = "suit " + deck[i].Suit;
-
-// 		value.innerHTML = deck[i].Value;
-// 		card.appendChild(value);
-// 		card.appendChild(suit);
-
-// 		document.getElementById("deck").appendChild(card);
-// 	}
-// }
 
 function randomNum(){   
     let random = Math.floor(Math.random() * deck.length)
@@ -155,9 +136,21 @@ function play(){
 
 }
 
+function decreaseRound(){
+    if (rounds >= 1){
+        rounds -= 1
+        roundsLeft.innerHTML = rounds
+    }else{
+        drawButton.style.display="none"
+        roundsLeft.innerHTML = "Game Over!"
+        roundsMessage.style.display="none"
+    }
+}
+
 drawButton.addEventListener("click", () => {
-    getDeck()
+    createDeck()
     randomNum()
+    decreaseRound()
     shuffle(deck)
     // renderDeck(deck)
     play()
