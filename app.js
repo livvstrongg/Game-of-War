@@ -16,67 +16,76 @@ let player2Count = 26
 let deck = []
 let playerOneDeck = []
 let playerTwoDeck = []
+let suits = ["♠", "♣", "♥", "♦"]
+let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 
-function makeDeck(){
-    let suit = ["♠", "♣", "♥", "♦"]
-    let rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
-    let value = {
-    A: 14,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 7,
-    8: 8,
-    9: 9,
-    10: 10,
-    J: 11,
-    Q: 12,
-    K: 13,
-}
-for (let i = 0; i < suit.length; i++) {
-    for(let j = 0; j < rank.length; j++){
-        let card = {
-            suit: suit[i],
-            rank: rank[j],
-            value: value[rank[j]]
-        };
-        deck.push(card);
-        }
-    }
-    console.log(deck)
-}
-makeDeck()
 
-function shuffleDeck(){
-    for(let i = 0; i <= 26; i++) {
-        let randomNumber = Math.floor(Math.random() * deck.length)
-        playerOneDeck.push(deck[randomNumber])
-        let randomNumber2 = Math.floor(Math.random() * deck.length)
-        playerTwoDeck.push(deck[randomNumber2])
-    }
-    return shuffleDeck
+function getDeck()
+{
+    let deck = new Array();
+    for(let i = 0; i < suits.length; i++)
+    {
+    for(let x = 0; x < values.length; x++)
+{
+    let card = {Value: values[x], Suit: suits[i]};
+    deck.push(card);
+}
+}
+return deck; 
+  
 }
 
-function drawCards() {
-    playerOneDeck[0] = playerOneDeck.shift([0])
-    playerOneDeck.innerHTML = playerOneDeck[0].value
-    playerTwoDeck[0] = playerTwoDeck.shift([0])
-    playerTwoDeck.innerHTML = playerTwoDeck[0].value      
+deck = getDeck()
+
+function shuffle(deck)
+{
+	for (let i = 0; i < 1000; i++)
+	{
+		let location1 = Math.floor((Math.random() * deck.length));
+		let location2 = Math.floor((Math.random() * deck.length));
+		let tmp = deck[location1];
+
+		deck[location1] = deck[location2];
+		deck[location2] = tmp;
+	}
+}
+
+function renderDeck(deck)
+{
+      document.getElementById("deck").innerHTML = "";
+
+	for(let i = 0; i < deck.length; i++)
+	{
+		let card = document.createElement("div");
+		let value = document.createElement("div");
+		let suit = document.createElement("div");
+		card.className = "card";
+		value.className = "value";
+		suit.className = "suit " + deck[i].Suit;
+
+		value.innerHTML = deck[i].Value;
+		card.appendChild(value);
+		card.appendChild(suit);
+
+		document.getElementById("deck").appendChild(card);
+	}
 }
 
 function randomNum(){
+    console.log("the deck length is", deck.length)
     let random = Math.floor(Math.random() * deck.length)
+    console.log("random number 1", random);
     playerOneCard.innerHTML = random
     let random2 = Math.floor(Math.random() * deck.length)
+    console.log("random number 2", random2);
     playerTwoCard.innerHTML = random2
 }
+
 
 function increasePlayer1DiscardPile(){
     if (player1Count >= 1){
         player1Count -= 1
-        p1discard.innerHTML = player1Count
+        player1Count.innerHTML = player1Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
@@ -87,7 +96,7 @@ function increasePlayer1DiscardPile(){
 function increasePlayer2DiscardPile(){
     if (player2Count >= 1){
         player2Count -= 1
-        p2Discard.innerHTML = player2Count
+        // p2DiscardPile.innerHTML = player2Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
@@ -105,11 +114,11 @@ function winner(){
 }
 
 function increasePlayerOnevalue(){
+    if(player)
     player1Count += 2
     playerOneCardCount.innerHTML = player1Count
     winnerOneMessage.style.display="block"
     winnerTwoMessage.style.display="none"
-
 }
 function decreasePlayerOnevalue(){
     player1Count -= 1
@@ -142,7 +151,9 @@ function play(){
 
 drawButton.addEventListener("click", () => {
     randomNum()
-    drawCards()
+    getDeck()
+    shuffle(deck)
+    // renderDeck(deck)
     play()
     increasePlayer1DiscardPile()
     increasePlayer2DiscardPile()
@@ -159,11 +170,11 @@ rematchButton.addEventListener("click", () => {
     console.log("this button also works")
 })
 
-// function gameOver(){
-//     if (player1Count && player2Count === 0){
-//         winnerOneMessage.style.display = ""
-//     }
-//     // else if (roundsLeft.innerHTML >= 1 && playerOneCardCount.innerHTML < playerTwoCardCount.innerHTML){
-//     //     winnerTwoMessage.style.display = ""
-//     // }
-// } 
+function gameOver(){
+    if (player1Count && player2Count === 0){
+        winnerOneMessage.style.display = ""
+    }
+    else if (roundsLeft.innerHTML >= 1 && playerOneCardCount.innerHTML < playerTwoCardCount.innerHTML){
+        winnerTwoMessage.style.display = ""
+    }
+} 
