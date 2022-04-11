@@ -18,7 +18,10 @@ let playerOneDeck = []
 let playerTwoDeck = []
 let suits = ["♠", "♣", "♥", "♦"]
 let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
-
+let winner1 = document.querySelector(".winner1")
+let winner2 = document.querySelector(".winner2")
+winner1 = 'none'
+winner2 = 'none'
 
 function getDeck()
 {
@@ -27,7 +30,7 @@ function getDeck()
     {
     for(let x = 0; x < values.length; x++)
 {
-    let card = {Value: values[x], Suit: suits[i]};
+    let card = {value: values[x], suit: suits[i]};
     deck.push(card);
 }
 }
@@ -36,6 +39,7 @@ return deck;
 }
 
 deck = getDeck()
+
 
 function shuffle(deck)
 {
@@ -50,37 +54,36 @@ function shuffle(deck)
 	}
 }
 
-function renderDeck(deck)
-{
-      document.getElementById("deck").innerHTML = "";
+// function renderDeck()
+// {
+//       document.getElementById("deck").innerHTML = "none";
 
-	for(let i = 0; i < deck.length; i++)
-	{
-		let card = document.createElement("div");
-		let value = document.createElement("div");
-		let suit = document.createElement("div");
-		card.className = "card";
-		value.className = "value";
-		suit.className = "suit " + deck[i].Suit;
+// 	for(let i = 0; i < deck.length; i++)
+// 	{
+// 		let card = document.createElement("div");
+// 		let value = document.createElement("div");
+// 		let suit = document.createElement("div");
+// 		card.className = "card";
+// 		value.className = "value";
+// 		suit.className = "suit " + deck[i].Suit;
 
-		value.innerHTML = deck[i].Value;
-		card.appendChild(value);
-		card.appendChild(suit);
+// 		value.innerHTML = deck[i].Value;
+// 		card.appendChild(value);
+// 		card.appendChild(suit);
 
-		document.getElementById("deck").appendChild(card);
-	}
-}
+// 		document.getElementById("deck").appendChild(card);
+// 	}
+// }
 
-function randomNum(){
-    console.log("the deck length is", deck.length)
+function randomNum(){   
     let random = Math.floor(Math.random() * deck.length)
-    console.log("random number 1", random);
-    playerOneCard.innerHTML = random
-    let random2 = Math.floor(Math.random() * deck.length)
-    console.log("random number 2", random2);
-    playerTwoCard.innerHTML = random2
+    playerOneCard.innerHTML = deck[random].value + deck[random].suit;
+    let random2 = Math.floor(Math.random() * deck.length)     
+    playerTwoCard.innerHTML = deck[random2].value + deck[random2].suit;
 }
 
+playerOneDeck = deck.slice(0, deck.length / 2);
+playerTwoDeck  = deck.slice(deck.length / 2, deck.length);
 
 function increasePlayer1DiscardPile(){
     if (player1Count >= 1){
@@ -96,7 +99,6 @@ function increasePlayer1DiscardPile(){
 function increasePlayer2DiscardPile(){
     if (player2Count >= 1){
         player2Count -= 1
-        // p2DiscardPile.innerHTML = player2Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
@@ -104,13 +106,17 @@ function increasePlayer2DiscardPile(){
     }
 }
 
-function winner(){
-    if(player1Count && player2Count) {
-        console.log("no winner yet")
+function winner() {
+    if (player1Count && player2Count) {
+        
     } else {
-        if(player1Count === 0) console.log('player two wins')
-        else console.log("player one wins!")
-    } 
+        if (player1Count === 0) {
+            winner2.style.display = "block";
+        }
+        else {
+            winner1.style.display = "block";
+        }
+    }
 }
 
 function increasePlayerOnevalue(){
@@ -150,21 +156,21 @@ function play(){
 }
 
 drawButton.addEventListener("click", () => {
-    randomNum()
     getDeck()
+    randomNum()
     shuffle(deck)
     // renderDeck(deck)
     play()
     increasePlayer1DiscardPile()
     increasePlayer2DiscardPile()
-    // makeDeck()
+    decreasePlayerOnevalue()
+    decreasePlayerTwovalue()
 })
 
 function reset(){
     location.reload()
 }
 
-//THIS WORKS
 rematchButton.addEventListener("click", () => {
     reset()
     console.log("this button also works")
