@@ -24,11 +24,10 @@ Once the game has ended you will be taken to a page that gives you the option to
 
 # MVP Goals: 
 
--have player 1 & player 2
+-have player 1 & player 2 
 -click on button to show cards
 -cards assigned to winner of that round
--card counter
--reset button
+-rematch button
 -create 52 cards
 -randomly assign cards evenly to both players
 

@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./Radiantantique-2reo.ttf') 
+  }
+
+body {
+    background-color: #BFC8AD; 
+}
+
+.mother {
+    display: flex;
+    border-style: double;
+    border-color: black;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 20px;
+}
+*{
+    border: 1px solid red;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-family: 'Playfair Display';
+    font-size: 2rem;
+}
+.discards {
+    display: flex;
+    justify-content: space-around;
+}
+.p1card {
+    width: 50px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#value {
+    text-align: left;
+}
+#score {
+    text-align: right;
+}
+.p2card {
+    width: 50px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rounds {
+    display: flex;
+    justify-content: center;
+}
+
+.rounds_left {
+    display: flex;
+    justify-content: center;
+}
