@@ -27,27 +27,29 @@ body {
     display: flex;
     justify-content: center;
     gap: 200px;
-    color: black;
+    color: white;
     margin: -40px;
 }
 .p1card {
     font-family: 'Rye';
+    font-size: 40px;
     width: 200px;
     height: 300px;
     border-radius: 5px;
-    border-color: black;
+    border-color: darkorange;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     border-style: solid;
-    color: darkgreen;
+    color: darkorange;
     margin: 20px;
     background-color: white;
 }
 
 .p2card {
     font-family: 'Rye';
+    font-size: 40px;
     width: 200px;
     height: 300px;
     border-radius: 5px;
@@ -65,7 +67,7 @@ body {
     font-family: 'Rye';
     display: flex;
     justify-content: center;
-    color: black;
+    color: white;
 }
 
 .rounds_left {
@@ -75,7 +77,7 @@ body {
     display: flex;
     margin: 0 auto;
     justify-content: center;
-    color: black;
+    color: white;
 }
 .buttons {
     display: flex;
@@ -110,7 +112,6 @@ body {
       transform: scale(1.05) rotate(0deg);
     }
 
-
 .button2 {
       background-color: #c2fbd7;
       border-radius: 100px;
@@ -144,7 +145,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: white;
 }
 
 .p1-discard {
@@ -156,7 +157,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: white;
 }
 
 .winners {
@@ -166,7 +167,12 @@ body {
     color: white;
 }
 
-.cardone, .cardtwo {
+.cardone {
     font-family: 'Rye';
-    color: black;
+    color: darkorange
+}
+
+.cardtwo {
+    font-family: 'Rye';
+    color: darkgreen;
 }

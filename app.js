@@ -57,7 +57,6 @@ return deck;
 
 deck = createDeck()
 
-
 function shuffle(deck)
 {
 	for (let i = 0; i < 52; i++)
@@ -180,9 +179,7 @@ function decreaseRound(){
 }
 
 drawButton.addEventListener("click", () => {
-    createDeck()
     randomNum()
-    shuffle(deck)
     play()
     decreaseRound()
     increasePlayer1DiscardPile()
@@ -210,3 +207,5 @@ function gameOver(){
         winnerThreeMessage.innerHTML = "It's a tie!"
     }
 }
+shuffle(deck)
+createDeck()
