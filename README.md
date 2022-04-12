@@ -17,7 +17,7 @@ JSS, HTML, CSS
 
 Press draw to play. 
 
-You will see that each players cards will contain a variable, suit, and value of that variable. Whichever player has the highest value card will receive two cards in their discard pile representing them receiving both cards played. Once all 26 rounds are over, whichever player has the most cards in their discard pile is declared the winner. You will then be prompted to press the rematch button to reset the game and play again!
+You will see that each players cards will contain a variable, suit, and value of that variable. Whichever player has the highest value card will receive two cards in their discard pile representing them receiving both cards played. If their value is the same, neither will recieve cards in their discard pile. Once all 26 rounds are over, whichever player has the most cards in their discard pile is declared the winner. You will then be prompted to press the rematch button to reset the game and play again!
 
 # Next Steps:
 
