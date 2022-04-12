@@ -6,14 +6,18 @@
   }
 
 body {
-    background-color: #BFC8AD; 
+    background-image: url("https://s26162.pcdn.co/wp-content/uploads/2021/06/American_western_cowboy_red_sunset_illustration_1280x1024.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 900px;
 }
 
 .mother {
     display: flex;
     /* border-style: double;
     border-color: black; */
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     font-size: 20px;
 }
@@ -21,12 +25,12 @@ body {
 .title{
     display: flex;
     justify-content: center;
-    font-family: 'Playfair Display';
+    font-family: 'Rye';
     font-size: 2rem;
 }
 .discards {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .p1card {
     width: 50px;
@@ -68,31 +72,11 @@ body {
 }
 
 .button1 {
-    color: white;
-    font-size: 20px;
-    font-family: helvetica;
-    text-decoration: none;
-    border: 2px solid white;
-    border-radius: 20px;
-    transition-duration: .2s;
-    -webkit-transition-duration: .2s;
-    -moz-transition-duration: .2s;
-    background-color: black;
-    padding: 4px 30px;
+
 }
 
 .button2 {
-    color: white;
-    font-size: 20px;
-    font-family: helvetica;
-    text-decoration: none;
-    border: 2px solid white;
-    border-radius: 20px;
-    transition-duration: .2s;
-    -webkit-transition-duration: .2s;
-    -moz-transition-duration: .2s;
-    background-color: black;
-    padding: 4px 30px;
+
 }
 
 .p2-discard {
@@ -112,5 +96,10 @@ body {
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.winners {
+    display: flex;
     justify-content: center;
 }

@@ -7,8 +7,6 @@ let player2DiscardPile = document.querySelector(".p2-discard")
 let winnerOneMessage = document.querySelector(".winner1")
 let winnerTwoMessage = document.querySelector(".winner2")
 let winnerThreeMessage = document.querySelector(".winner3")
-let player1 = []
-let player2 = []
 let player1Count = 26
 let player2Count = 26
 let player1Discard = 0
@@ -124,15 +122,15 @@ function increasePlayerOneDiscardPile(){
     player1Discard += 2
     player1DiscardPile.innerHTML = player1Discard
     winnerOneMessage.style.display="block"
-    winnerTwoMessage.style.display="none"
+    winnerTwoMessage.style.display="block"
     winnerThreeMessage.style.display="block"
 }
 
 function increasePlayerTwoDiscardPile(){
     player2Discard += 2
     player2DiscardPile.innerHTML = player2Discard
+    winnerOneMessage.style.display="block"
     winnerTwoMessage.style.display="block"
-    winnerOneMessage.style.display="none"
     winnerThreeMessage.style.display="block"
 }
 
@@ -204,16 +202,11 @@ rematchButton.addEventListener("click", () => {
 function gameOver(){
 
     if (rounds === 0 && player1Discard > player2Discard){
-        winnerOneMessage.innerHTML = "Player One Wins"
+        winnerOneMessage.innerHTML = "Player One Wins!"
     }
     else if (rounds === 0 && player1Discard < player2Discard){
-        winnerTwoMessage.innerHTML = "Player Two Wins "
+        winnerTwoMessage.innerHTML = "Player Two Wins!"
     } else if (rounds === 0 && player1Discard === player2Discard){
-        winnerThreeMessage.innerHTML = "It's a tie"
+        winnerThreeMessage.innerHTML = "It's a tie!"
     }
 }
- 
-gameOver()
-
-console.log(playerOneDeck);
-console.log(playerTwoDeck);
