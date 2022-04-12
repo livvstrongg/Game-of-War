@@ -23,6 +23,7 @@ body {
     margin: 25px;
 }
 .discards {
+    font-family: 'Rye';
     display: flex;
     justify-content: center;
     gap: 200px;
@@ -30,8 +31,9 @@ body {
     margin: -40px;
 }
 .p1card {
-    width: 150px;
-    height: 250px;
+    font-family: 'Rye';
+    width: 200px;
+    height: 300px;
     border-radius: 5px;
     border-color: black;
     margin: 0 auto;
@@ -39,32 +41,35 @@ body {
     align-items: center;
     justify-content: center;
     border-style: solid;
-    color: black;
+    color: darkgreen;
     margin: 20px;
     background-color: white;
 }
 
 .p2card {
-    width: 150px;
-    height: 250px;
+    font-family: 'Rye';
+    width: 200px;
+    height: 300px;
     border-radius: 5px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     border-style: solid;
-    color: black;
+    color: darkgreen;
     margin: 20px;
     background-color:white;
 }
 
 .rounds {
+    font-family: 'Rye';
     display: flex;
     justify-content: center;
     color: black;
 }
 
 .rounds_left {
+    font-family: 'Rye';
     width: 50px;
     height: 50px;
     display: flex;
@@ -88,7 +93,7 @@ body {
       color: green;
       cursor: pointer;
       display: inline-block;
-      font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+      font-family: 'Rye',-apple-system,system-ui,Roboto,sans-serif;
       padding: 7px 20px;
       text-align: center;
       text-decoration: none;
@@ -113,7 +118,7 @@ body {
       color: green;
       cursor: pointer;
       display: inline-block;
-      font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+      font-family: 'Rye',-apple-system,system-ui,Roboto,sans-serif;
       padding: 7px 20px;
       text-align: center;
       text-decoration: none;
@@ -131,6 +136,7 @@ body {
     }
 
 .p2-discard {
+    font-family: 'Rye';
     width: 50px;
     height: 50px;
     border-radius: 5px;
@@ -142,6 +148,7 @@ body {
 }
 
 .p1-discard {
+    font-family: 'Rye';
     width: 50px;
     height: 50px;
     border-radius: 5px;
@@ -153,11 +160,13 @@ body {
 }
 
 .winners {
+    font-family: 'Rye';
     display: flex;
     justify-content: center;
     color: white;
 }
 
 .cardone, .cardtwo {
+    font-family: 'Rye';
     color: black;
 }
