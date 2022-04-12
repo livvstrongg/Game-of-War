@@ -58,7 +58,7 @@ return deck;
 }
 
 deck = createDeck()
-//deck of cards created
+
 
 function shuffle(deck)
 {
@@ -89,11 +89,11 @@ playerTwoDeck  = deck.slice(deck.length / 2, deck.length);
 function increasePlayer1DiscardPile(){
     if (player1Count >= 1){
         player1Count -= 1
-        // player1Count.innerHTML = player1Count
+        player1Count.innerHTML = player1Count
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
-        // roundsMessage.style.display="none"
+        roundsMessage.style.display="none"
     }
 }
 
@@ -103,7 +103,7 @@ function increasePlayer2DiscardPile(){
     } else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
-        // roundsMessage.style.display="none"
+        roundsMessage.style.display="none"
     }
 }
 
@@ -177,13 +177,9 @@ function decreaseRound(){
     }else{
         drawButton.style.display="none"
         roundsLeft.innerHTML = "Game Over!"
-        // roundsMessage.style.display="none"
+        roundsMessage.style.display="none"
     }
 }
-// createDeck()
-// randomNum()
-// // decreaseRound()
-// shuffle(deck)
 
 drawButton.addEventListener("click", () => {
     createDeck()
@@ -217,7 +213,7 @@ function gameOver(){
     }
 }
  
-
+gameOver()
 
 console.log(playerOneDeck);
 console.log(playerTwoDeck);
