@@ -1,39 +1,27 @@
 # Game-of-War
 
-# Wireframe 
+# Screenshots
 
-https://www.figma.com/file/jX4SF9vtWhbjw2pGnIvYFO/Game-of-War?node-id=0%3A1
+![Screen Shot 2022-04-12 at 3 41 40 PM](https://user-images.githubusercontent.com/101207297/163058390-f65cbbbf-7031-4dea-aecf-58eafeca2a6d.png)
+![Screen Shot 2022-04-12 at 3 41 52 PM](https://user-images.githubusercontent.com/101207297/163058400-539338ec-31bb-4bc7-9705-1c729adeba1f.png)
+![Screen Shot 2022-04-12 at 3 42 15 PM](https://user-images.githubusercontent.com/101207297/163058406-de68311d-ede3-41a7-a075-c434204fcb78.png)
+![Screen Shot 2022-04-12 at 3 42 05 PM](https://user-images.githubusercontent.com/101207297/163058414-d7e0aa2a-6f39-45d6-8760-22d00cc9e3ca.png)
 
-# Overview of the Game:
+# What Was Used
 
-Player 1 and Player 2 are battling for the title of winner. The 'war' is comprised of several 'battles' in which each player draws a card and places it upright in the center of the table. Whichever players card has a higher value wins that battle and gets to place both cards played back into their deck. The first player to lose all of their cards is the loser and the other player is declared winner. 
+JSS, HTML, CSS
 
 # Details:
 
-The game is played with a basic deck of 52 cards. Cards include four suits: Hearts, Diamonds, Clubs, and Spades. Within each suit is a 2,3,4,5,6,7,8,9,10,Jack,Queen, King, and an Ace card. A 2 is considered least value, while an Ace is considered highest value. For example if Player 1 plays a Jack and Player 2 plays a 7, Player 1 would win that round. 
+# Instructions:
 
-# In the event of a tie:
+Press draw to play. 
 
-Say both players play a card of the same value (i.e. 4 of Hearts & 4 of Clubs). In this event both players would have to lay, face down, 3 cards and flip the fourth card over. Whoever has the highest fourth card wins the battle and gets to keep the total amount of cards that have been played on the table. 
+You will see that each players cards will contain a variable, suit, and value of that variable. Whichever player has the highest value card will receive two cards in their discard pile representing them receiving both cards played. Once all 26 rounds are over, whichever player has the most cards in their discard pile is declared the winner. You will then be prompted to press the rematch button to reset the game and play again!
 
-# End of Game:
+# Next Steps:
 
-Once the game has ended you will be taken to a page that gives you the option to rematch. 
-
+-Would like to make it so the cards have the number in the top left corner, the suit in the center, and the value in the bottom right corner like a regular card
+-Possibly create point system that keeps track of wins
+-Create where you can play against the computer
 --------------------------------------------------------------------------------------
-
-# MVP Goals: 
-
--have player 1 & player 2 
--click on button to show cards
--cards assigned to winner of that round
--rematch button
--create 52 cards
--randomly assign cards evenly to both players
-
-# Stretch 
-
--play against computer option
--create specialized cards
--win counter
--make it pretty
