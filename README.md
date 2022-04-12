@@ -13,6 +13,8 @@ JSS, HTML, CSS
 
 # Details:
 
+https://livvstrongg.github.io/Game-of-War/
+
 # Instructions:
 
 Press draw to play. 
